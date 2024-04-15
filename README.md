@@ -1,6 +1,6 @@
 
 # Reference Implementation for FDO-FDOps
-### !This repository is just for anonymized reviewing procedures.!
+### !This repository is just for anonymized reviewing procedures using the pseudonym Busy Napier.!
 ## Abbreviations:
 - KIP: Kernel Information Profile
 - TPM: Typed PID Maker
