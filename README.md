@@ -11,9 +11,9 @@
 
 ## To reproduce the results, carry out the following steps (you will need to have Docker installed and started):
 - clone this repository
-- navigate to the local folder and start the docker container using ```docker compose build```
-- after building, start the Docker container using ```docker compose up```
-- when the Docker container is running, register the extended FDO records using the shell script with (assuming mac): ```chmod +x ./ingest_fdos.sh``` and then ```./ingest_fdos.sh --post --dir extended_records```
+- navigate to the local folder and start the docker compose stack using ```docker compose build```
+- after building, start the containers using ```docker compose up```
+- when the containers are running and the spring build is finished, register the extended FDO records using the shell script with (assuming mac): ```chmod +x ./ingest_fdos.sh``` and then ```./ingest_fdos.sh --post --dir extended_records```
 - run the test_tpm.ipynb cells to sequentially print out the results (further described in the following)
 ## FDO records
 We duplicated and extended the FDO records of the PIDs available at https://zenodo.org/records/7022736. The original records are stored under original_records. The extended records are available at extended_records and were only registered locally using  sandbox PIDs, not at Handle as the original ones which can be resolved at https://hdl.handle.net/ using the PIDs in the referenced JSON files. The extended records were created using additional Kernel Information Profiles (KIPs) and Attribute Types that are registered at the ePIC testing DTR (https://dtr-test.pidconsortium.net/), namely:
