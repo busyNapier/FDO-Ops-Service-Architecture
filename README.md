@@ -1,6 +1,5 @@
-
 # Reference Implementation for FDO-FDOps
-### !This repository is just for anonymized reviewing procedures using the pseudonym Busy Napier.!
+### This repository is just for anonymized reviewing procedures using the pseudonym Busy Napier.!
 ## Abbreviations:
 - KIP: Kernel Information Profile
 - TPM: Typed PID Maker
@@ -10,17 +9,12 @@
 - DOIP: Digital Object Interface Protocol
 - DTR: Data Type Registry
 
-## To reproduce the results, carry out the following steps:
+## To reproduce the results, carry out the following steps (you will need to have Docker installed and started):
 - clone this repository
-- navigate to the local folder and install all pip packages in the requirements.txt with 'pip install -r requirements.txt'. Ideally, set up an virtual environment first with 'python3 -m venv your_venv' (requires that you have python3 installed)
-- start the flask applications using 'python3 tpm_adapter' for the TPM_Adapter module and 'python3 operation_apis' for the implementation of the web serice operations. They will run on your localhost.
-- use the TPM service which is available at https://github.com/kit-data-manager/pit-service?tab=readme-ov-file by navigating to the repository and cloning also this repository.
-- handling of the TPM service is described at the external repository, but you can start the service with default settings by navigating into the cloned folder and executing './gradlew run --args="--spring.config.location=config/application.properties"'
-- the TPM service should run in your terminal. You can test the availability under http://localhost:8090/actuator/info. This localhost address is also the standard configuration for this software.
-- back to the application, to create sandbox PIDs for the extended FDO records, execute the following shell script: 'ingest_fdos.sh'. Insert './ingest_fdos.sh chmod +x' and then execute './ingest_fdos.sh --post --dir PATH_TO_EXTENDED_RECORDS'
-- the pids in the JSON record files should be automatically updated and the records registred at the local TPM instance.
-- You can now request the TPM_Adapter's /doip endpoint. A reference script is provided at test_tpm.py that sequentially performs all operations as described below for all FDO-FDOps that were previously registered. 
-
+- navigate to the local folder and start the docker container using ```docker compose build```
+- after building, start the Docker container using ```docker compose up```
+- when the Docker container is running, register the extended FDO records using the shell script with (assuming mac): ```chmod +x ./ingest_fdos.sh``` and then ```./ingest_fdos.sh --post --dir extended_records```
+- run the test_tpm.ipynb cells to sequentially print out the results (further described in the following)
 ## FDO records
 We duplicated and extended the FDO records of the PIDs available at https://zenodo.org/records/7022736. The original records are stored under original_records. The extended records are available at extended_records and were only registered locally using  sandbox PIDs, not at Handle as the original ones which can be resolved at https://hdl.handle.net/ using the PIDs in the referenced JSON files. The extended records were created using additional Kernel Information Profiles (KIPs) and Attribute Types that are registered at the ePIC testing DTR (https://dtr-test.pidconsortium.net/), namely:
 - KIPs: 
@@ -266,7 +260,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 
     true
     ```
-- **EXPORT_IMAGES_TO_PNG**: Recieves a container file containing image data and returns a zip folder with the images in png format.
+- **GET_THUMBNAIL**: Recieves a container file containing image data and returns a zip folder with the images in png format.
     *Request*:
     ```
     POST .../doip?operationId=sandbox/PID1&targetId=sandbox/PID2
@@ -275,8 +269,8 @@ In the following, example HTTP/DOIP requests and responses are provided for each
     *Response*:
     ```
     HTTP/1.1 200 OK
-    Content-Type: application/zip
-    Content-Disposition: attachment; filename="output.zip"
+    Content-Type: image/png
+    Content-Disposition: attachment; filename="{target_pid}.png"
     Content-Length: ...
     ETag: "abcd1234"
 

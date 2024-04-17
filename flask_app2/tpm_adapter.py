@@ -31,7 +31,7 @@ def list_fdos(fdo_file='fdo_list.json', tpm_arg='fdos'):
         return fdo_list
     elif app.config['MODE'] == 'deployment':'''
     # Make a GET request to the external service in deployment mode
-    url = 'http://localhost:8090/api/v1/pit/known-pid?page=0&size=20'
+    url = 'http://tpmapp:8090/api/v1/pit/known-pid?page=0&size=20'
     headers = {
         'accept': 'application/hal+json'
     }
@@ -48,7 +48,7 @@ def get_fdo(target_id):
     Retrieves the list of all FDOs using the list_fdos function and then searches
     for and returns a specific record by target_id.
     """
-    url = f'http://localhost:8090/api/v1/pit/pid/{target_id}?validation=false'
+    url = f'http://tpmapp:8090/api/v1/pit/pid/{target_id}?validation=false'
     headers = {
         'accept': 'application/json'
     }
@@ -181,8 +181,7 @@ def handle_doip():
             fdo_fdops_map = map_records(operation_id, target_id, client_input=attributes)
         else:
             fdo_fdops_map = map_records(operation_id, target_id)
-        # Stop timing before the function to exclude
-        # Stop timing after the second measured function
+        # Stop timing before the api request function
         end_time = time.perf_counter()
         elapsed_time = end_time - start_time
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
@@ -200,4 +199,4 @@ def handle_doip():
         return jsonify({"error": "Invalid operationId or targetId."})
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
