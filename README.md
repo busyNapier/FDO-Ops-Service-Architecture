@@ -62,13 +62,33 @@ In the following, example HTTP/DOIP requests and responses are provided for each
     Content-Length: ...
 
     {
-      "available operations": [
-        "0.DOIP/Op.LIST_Ops",
-        "0.DOIP/Op.LIST_FDOs",
-        "0.DOIP/Op.GET_FDO",
-        "0.DOIP/Op.*"
-        ]
+    "available service operations": {
+        "0.DOIP/Op.*": {
+            "arguments": "*",
+            "operationID": "Object",
+            "response type": "JSON object or encoded binary data",
+            "targetID": "Object"
+        },
+        "0.DOIP/Op.GET_FDO": {
+            "arguments": "None",
+            "operationID": "0.DOIP/Op.GET_FDO",
+            "response type": "PID record",
+            "targetID": "Object"
+        },
+        "0.DOIP/Op.LIST_FDOs": {
+            "arguments": "None",
+            "operationID": "0.DOIP/Op.LIST_FDOs",
+            "response type": "array of FDO PIDs",
+            "targetID": "Service"
+        },
+        "0.DOIP/Op.LIST_Ops": {
+            "arguments": "None",
+            "operationID": "0.DOIP/Op.LIST_Ops",
+            "response type": "map of service operation specifications or map of supported FDOPs for the target object",
+            "targetID": "Service or Object"
+        }
     }
+}
 - **LIST_FDOS**: lists all FDOs registered in the the configured TPM instance
     *Request*:
     ```
