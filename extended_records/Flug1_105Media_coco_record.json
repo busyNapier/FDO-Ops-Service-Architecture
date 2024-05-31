@@ -42,10 +42,10 @@
         "value": "https://zenodo.org/record/7022736/files/Flug1_105Media_coco.json?download=1"
       }
     ],
-    "21.T11148/4fe7cde52629b61e3b82": [
+    "21.T11148/03f205d2f632dd312ce0": [
       {
-        "key": "21.T11148/4fe7cde52629b61e3b82",
-        "name": "isMetadataFor",
+        "key": "21.T11148/03f205d2f632dd312ce0",
+        "name": "isAnnotationFor",
         "value": "21.11152/f48bf4e7-3879-4216-8f64-45a060b8f658"
       }
     ],
@@ -122,5 +122,5 @@
       }
     ]
   },
-  "pid": "sandboxed/d52d3307-3166-4a17-b6eb-105a0ef2aecb"
+  "pid": "sandboxed/6f45967f-1ca5-4d67-acf4-8401ef66abe2"
 }

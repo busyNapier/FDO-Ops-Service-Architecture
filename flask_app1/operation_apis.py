@@ -156,7 +156,8 @@ def get_orcid():
 
 def fetch_records(pids):
     records = []
-    # using the local json files. Normally, a PIT service is used.
+    # using the local json files for TPM mocking in testing environment. 
+    # In production environement, a running TPM instance configured with the Handle Registry is used.
     script_dir = os.path.dirname(__file__)  # Directory of the script
     data_dir = os.path.join(script_dir, 'original_records')  # Path to the "data" directory
     for filename in os.listdir(data_dir):

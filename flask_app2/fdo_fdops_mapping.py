@@ -7,7 +7,7 @@ class OperationMapping:
         self.M_a = {}
         self.M_r = {}
         self.WF = {}
-        self.httpParameters=["21.T11148/e92d9f23abd63ebea855", "21.T11148/916ca3badfa68b06870c", "21.T11148/0c055f37730ce8b376e5", "21.T11148/3591e6f2f123dcc14aee"]
+        self.httpParameters=["21.T11148/e92d9f23abd63ebea855", "21.T11148/916ca3badfa68b06870c", "21.T11148/0c055f37730ce8b376e5", "21.T11148/3591e6f2f123dcc14aee", "21.T11148/23f7a91300c3db80aa9f"]
         self.pids = {
             "contentHeaderType":  "21.T11148/66c4de21f77739edb009",
             "httpEndpointLocation": "21.T11148/50b78494937d6085d763",
@@ -20,7 +20,8 @@ class OperationMapping:
             "httpParameterKey": "21.T11148/574c609fddc9a50c409f",
             "httpParameterValue": "21.T11148/d08567465008206eb123",
             "asArray": "21.T11148/931e01f99fcb1a4f60e7",
-            "httpParameterValueMap": "21.T11148/859aae499b8021af1ad9"
+            "httpParameterValueMap": "21.T11148/859aae499b8021af1ad9",
+            "httpEndpointPathParameter": "21.T11148/23f7a91300c3db80aa9f"
         }
     def add_request_to_M(self, order, new_request, parameter, value, sub_ops=None, index=None, restrictedUpdate=False):
         
@@ -130,7 +131,7 @@ class OperationMapping:
                                 self.add_request_to_M(self.operation_order, True, parameter, parameter_value_temp, index=index)
                         else:
                             value=data_record["entries"][parameter_value][0]["value"]
-                            self.add_request_to_M(self.operation_order, False, parameter, parameter_value)
+                            self.add_request_to_M(self.operation_order, False, parameter, value)
                     else:
                         self.add_request_to_M(self.operation_order, False, parameter, parameter_value)
         self.WF=self.M_r

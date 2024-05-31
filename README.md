@@ -1,4 +1,4 @@
-# Reference Implementation for FDO-FDOps
+# Reference Implementation for FDO-Ops
 ### This repository is just for anonymized reviewing procedures using the pseudonym Busy Napier.!
 ## Abbreviations:
 - KIP: Kernel Information Profile
@@ -9,7 +9,7 @@
 - DOIP: Digital Object Interface Protocol
 - DTR: Data Type Registry
 
-## To reproduce the results, carry out the following steps (you will need to have Docker installed and started):
+## To reproduce the results, carry out the following steps (you will need to have Docker installed and running):
 - clone this repository
 - navigate to the local folder and start the docker compose stack using ```docker compose build```
 - after building, start the containers using ```docker compose up```
@@ -46,7 +46,7 @@ Implements service specific operations for FDOs, namely:
  a separate request per value is added to the map. Otherwise, the values are mapped as one list. The module also considers recursive patterns when sub-operations are described and finally sorts the workflow map according to the record description which is theb returned.
 - Executor(): Recieves the workflow map containing the requests to execute the described operation(s) (currently only HTTP requests for Web APIs supported). Returns the resuls to the TPM_Adapter which sends it to the client.
 
-## DOIP request examples for FDO-FDOps
+## DOIP request examples for FDO-Ops
 In the following, example HTTP/DOIP requests and responses are provided for each FDOps (including service and external operations) with an example target. All requests follow a unifrom structure where the operationId query argument specifies the identifier of the FAIR Digital Operation and targetId the FAIR Digtial Object or serviceID this operation is applied to. These results can be reproduced for all reference FDO records following the instructions in the earlier section.
 
 - **LIST_OPS (for service ops)**: Lists all operations that are implemented by the service

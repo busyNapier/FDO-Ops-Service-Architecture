@@ -16,7 +16,7 @@ internal_functions = {
     "0.DOIP/Op.LIST_Ops": {"operationID": "0.DOIP/Op.LIST_Ops", "targetID": "Service or Object", "arguments": "None", "response type": "map of service operation specifications or map of supported FDOPs for the target object"},  # This function lists all available operations
     "0.DOIP/Op.LIST_FDOs": {"operationID": "0.DOIP/Op.LIST_FDOs", "targetID": "Service", "arguments": "None", "response type": "array of FDO PIDs"},
     "0.DOIP/Op.GET_FDO": {"operationID": "0.DOIP/Op.GET_FDO", "targetID": "Object", "arguments": "None", "response type": "PID record"},
-    "0.DOIP/Op.*": {"operationID": "Object", "targetID": "Object", "arguments": "*", "response type": "JSON object or encoded binary data"}
+    "*FDO_Operation": {"operationID": "Object", "targetID": "Object", "arguments": "*", "response type": "JSON object or encoded binary data"}
 }
 
 def list_service_ops():
@@ -125,13 +125,11 @@ def map_records(operation_id, target_id, client_input=None):
 
 def execute_request(fdo_fdops_map):
     executor = Executor()
-    responses = executor.select_request(fdo_fdops_map)
-    return responses
+    responses, elapsed_time = executor.select_request(fdo_fdops_map)
+    return responses, elapsed_time
 
 @app.route('/doip', methods=['GET', 'POST'])
 def handle_doip():
-    # Start timing
-    start_time = time.perf_counter()
     operation_id = request.args.get('operationId') if request.method == 'GET' else request.json.get('operationId')
     target_id = request.args.get('targetId') if request.method == 'GET' else request.json.get('targetId')
 
@@ -149,30 +147,26 @@ def handle_doip():
     elif operation_id.upper() == "0.DOIP/OP.LIST_OPS" and target_id.upper() == "SERVICE":
         # Call the function to list all available functions
         available_functions = list_service_ops()
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
+        elapsed_time =0
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
         return jsonify({"response": {"available service operations": available_functions}, "elapsed_time": elapsed_time})
 
     # Call the function to list_FDOs based on specific operationId
     elif operation_id.upper() == "0.DOIP/OP.LIST_FDOS" and target_id.upper() == "SERVICE":
         fdo_list = list_fdos()
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
+        elapsed_time =0
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
         return jsonify({"response": {"available FDOs": fdo_list}, "elapsed_time": elapsed_time})
         
     elif operation_id.upper() == "0.DOIP/OP.LIST_OPS" and target_id:
         fdops_list = list_fdops(target_id)
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
+        elapsed_time =0
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
         return jsonify({"response": {"available FDOps": fdops_list}, "elapsed_time": elapsed_time})
 
     elif operation_id.upper() == "0.DOIP/OP.GET_FDO" and target_id:
         fdo_record = get_fdo(target_id)
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
+        elapsed_time =0
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
         return jsonify({"response": {"FDO record": fdo_record}, "elapsed_time": elapsed_time})
 
@@ -182,10 +176,9 @@ def handle_doip():
         else:
             fdo_fdops_map = map_records(operation_id, target_id)
         # Stop timing before the api request function
-        end_time = time.perf_counter()
-        elapsed_time = end_time - start_time
+        #elapsed_time = end_time - start_time
         #print(f"Elapsed time: {elapsed_time:.2f} seconds")
-        response = execute_request(fdo_fdops_map)
+        response, elapsed_time = execute_request(fdo_fdops_map)
         try:
             return jsonify({"response": {"operation result": response}, "elapsed_time": elapsed_time})
         except TypeError as e:

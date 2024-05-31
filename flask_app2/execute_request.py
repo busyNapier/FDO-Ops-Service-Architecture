@@ -1,4 +1,5 @@
 import requests
+import time
 
 class Executor:
     def __init__(self):
@@ -16,8 +17,10 @@ class Executor:
             "httpParameterKey": "21.T11148/574c609fddc9a50c409f",
             "httpParameterValue": "21.T11148/d08567465008206eb123",
             "asArray": "21.T11148/931e01f99fcb1a4f60e7",
-            "httpParameterValueMap": "21.T11148/859aae499b8021af1ad9"
+            "httpParameterValueMap": "21.T11148/859aae499b8021af1ad9",
+            "httpEndpointPathParameter": "21.T11148/23f7a91300c3db80aa9f"
         }
+        self.elapsed_time = 0
     # Function to execute the request with flexibility
 
     def check_argument_reference(self, argument):
@@ -31,6 +34,9 @@ class Executor:
         method = request.get(self.pids['httpMethod'], 'GET').lower()  # Default to 'GET' if not specified
         url = request[self.pids['httpEndpointLocation']]
 
+        if self.pids["httpEndpointPathParameter"] in request:
+            url = url+request[self.pids["httpEndpointPathParameter"]]
+            
         try:
             # Optional components with defaults to None or {}
             headers = request.get(self.pids['httpHeaders'], {})
@@ -64,9 +70,13 @@ class Executor:
         # Filter out None values to ensure only provided parameters are passed to requests
         request_kwargs = {k: v for k, v in request_kwargs.items() if v is not None}
 
+        start_time = time.perf_counter()
+
         # Dynamically calling the requests method based on the 'method'
         try:
             response = requests.request(method, url, **request_kwargs)
+            end_time = time.perf_counter()
+            self.elapsed_time = end_time - start_time
             if response.ok:
                 # Here, you can decide what part of the response to store
                 # For simplicity, we're storing the raw content, but you could store response.json(), response.text, etc.
@@ -85,4 +95,4 @@ class Executor:
         for order in fdo_fdops_map:
             for request in fdo_fdops_map[order]:
                 self.execute_flexible_request(order, request, fdo_fdops_map[order][request])
-        return self.stored_responses
+        return self.stored_responses, self.elapsed_time
