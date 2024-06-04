@@ -104,7 +104,10 @@ def validate_orcid(orcid):
 @app.route('/get_orcid', methods=['GET'])
 def get_orcid():
     # Extract the ORCID ID from the request body
-    orcid_input = request.args.get('orcid')
+    try:
+        orcid_input = request.args.getlist('orcid')
+    except Exception:
+        orcid_input = request.args.get('orcid')
     headers = {
         'Accept': 'application/json',
     }
@@ -129,7 +132,7 @@ def get_orcid():
         else:
             return jsonify({"error": "No valid ORCiDs"}), 400
     else:
-        url = validate_orcid(orcid)
+        url = validate_orcid(orcid_input)
         if url != "400":
             response = requests.get(url, headers=headers)
             # Check if the request was successful
