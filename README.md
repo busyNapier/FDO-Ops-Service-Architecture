@@ -52,7 +52,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **LIST_OPS (for service ops)**: Lists all operations that are implemented by the service
     *Request*:
     ```
-    POST .../doip?operationId=0.DOIP/Op.LIST_Ops&targetId=service
+    GET .../doip?operationId=0.DOIP/Op.LIST_Ops&targetId=service
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -92,7 +92,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **LIST_FDOS**: lists all FDOs registered in the the configured TPM instance
     *Request*:
     ```
-    POST .../doip?operationId=0.DOIP/Op.LIST_FDOs&targetId=service
+    GET .../doip?operationId=0.DOIP/Op.LIST_FDOs&targetId=service
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -116,7 +116,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **GET_FDO**: retrieves the information record associated with the Persistent Identifier of a FDO using the TPM interface
     *Request*:
     ```
-    POST .../doip?operationId=0.DOIP/Op.GET_FDO&targetId=sandboxed/PID1
+    GET .../doip?operationId=0.DOIP/Op.GET_FDO&targetId=sandboxed/PID1
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -149,7 +149,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **LIST_OPS (for a FDO)**: lists all FAIR Digital Operations associated with a FDO and registered at the TPM instance
     *Request*:
     ```
-    POST .../doip?operationId=0.DOIP/Op.LIST_Ops&targetId=sandboxed/PID1
+    GET .../doip?operationId=0.DOIP/Op.LIST_Ops&targetId=sandboxed/PID1
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -193,7 +193,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **GET_ORCID**: Retrieves the profile of an ORCiD using the official ORCiD Web API.
     *Request*:
     ```
-    POST …/doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
+    GET …/doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
     Content-Type: application/json;charset=utf-8
     ```
     *Response*:
@@ -213,7 +213,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **FIND_METADATA**: Retrieves the information record of FDOs that are referenced as metadata objects in the target FDO record. 
     *Request*:
     ```
-    POST .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
+    GET .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -243,7 +243,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **FIND_ANNOTATION**: Retrieves the information record of FDOs that are referenced as annotation objects in the target FDO record.
     *Request*:
     ```
-    POST .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
+    GET .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -269,7 +269,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **VALIDATE_SCHEMA**: Recieves a JSON metadata document and corresponding JSON schema reference to validate the compliance between document and schema.
     *Request*:
     ```
-    POST .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
+    GET .../doip?operationId=sandboxed/PID1&targetId=sandboxed/PID2
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
@@ -283,7 +283,7 @@ In the following, example HTTP/DOIP requests and responses are provided for each
 - **GET_THUMBNAIL**: Recieves a container file containing image data and returns a zip folder with the images in png format.
     *Request*:
     ```
-    POST .../doip?operationId=sandbox/PID1&targetId=sandbox/PID2
+    GET .../doip?operationId=sandbox/PID1&targetId=sandbox/PID2
     Content-Type: appliaction/json;charset=utf-8
     ```
     *Response*:
