@@ -27,9 +27,9 @@ We duplicated and extended the FDO records of the PIDs available at https://zeno
     - HTTP Access Protocol: https://dtr-test.pidconsortium.net/#objects/21.T11148/a1fe3f60497302ae8b04
     - ORCiD Contact: https://dtr-test.pidconsortium.net/#objects/21.T11148/df4aab1aaf6c1cd41a70
     - Has Annotation: https://dtr-test.pidconsortium.net/#objects/21.T11148/210acdb71caa2e4c55cc
-    - document MIME Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
-    - schema Reference: https://dtr-test.pidconsortium.net/#objects/21.T11148/49330041ca5fddf9af92
-    - container MIME-Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/007fb75612859ed30aa0
+    - Document MIME Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
+    - Schema Reference: https://dtr-test.pidconsortium.net/#objects/21.T11148/49330041ca5fddf9af92
+    - Container MIME-Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/007fb75612859ed30aa0
 These attributes are present on the first level of the information record and partly contain sub-types by inheritance and compoistion, all specified in the DTR. Lower-level attribute structures are represented as string values (expected by the TPM validator) but reflect a JSON structure that is reconstructed in the TPM_Adapter module. The new types can be validated by the TPM instance, configured with the ePIC DTR by default.
 
 ## The software package comprises three main modules:
