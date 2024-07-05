@@ -27,7 +27,7 @@ We duplicated and extended the FDO records of the PIDs available at https://zeno
     - HTTP Access Protocol: https://dtr-test.pidconsortium.net/#objects/21.T11148/a1fe3f60497302ae8b04
     - ORCiD Contact(inherits from Contact): https://dtr-test.pidconsortium.net/#objects/21.T11148/df4aab1aaf6c1cd41a70
     - Has Annotation(inherits from Has Metadata): https://dtr-test.pidconsortium.net/#objects/21.T11148/210acdb71caa2e4c55cc
-    - Document MIME Type(inherits from media-type-IANA-application): https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
+    - Document MIME Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
     - Schema Reference: https://dtr-test.pidconsortium.net/#objects/21.T11148/49330041ca5fddf9af92
     - Container MIME-Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/007fb75612859ed30aa0
       
