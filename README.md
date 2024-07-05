@@ -17,17 +17,17 @@
 ## FDO records
 We duplicated and extended the FDO records of the PIDs available at https://zenodo.org/records/7022736. The original records are stored under [original_records](flask_app1/original_records). The extended records are available at [extended_records](extended_records) and were only registered locally using  sandbox PIDs, not at Handle as the original ones which can be resolved at https://hdl.handle.net/ using the PIDs in the referenced JSON files. The extended records were created using additional Kernel Information Profiles (KIPs) and Attribute Types that are registered at the ePIC testing DTR (https://dtr-test.pidconsortium.net/), namely:
 - KIPs: 
-    - Web API Operation KIP: https://dtr-test.pidconsortium.net/#objects/21.T11148/ea4e93d06a10e15d9cdf
-    - Raster Graphic Image Type KIP: https://dtr-test.pidconsortium.net/#objects/21.T11148/0e76292794888d4f1fa7
-    - Schema-based Metadata Type Profile: https://dtr-test.pidconsortium.net/#objects/21.T11148/2c3cafa4db3f3e1e51b3
+    - Web API Operation KIP(inherits from RDA KIP): https://dtr-test.pidconsortium.net/#objects/21.T11148/ea4e93d06a10e15d9cdf
+    - Raster Graphic Image Type KIP(inherits from RDA KIP): https://dtr-test.pidconsortium.net/#objects/21.T11148/0e76292794888d4f1fa7
+    - Schema-based Metadata Type Profile(inherits from Metadata KIP that inherits from RDA KIP): https://dtr-test.pidconsortium.net/#objects/21.T11148/2c3cafa4db3f3e1e51b3
 - Attribute Types:
     - Operation Name: https://dtr-test.pidconsortium.net/#objects/21.T11148/90ee0a5e9d4f8a668868
     - Required Input Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/2694e4a7a5a00d44e62b
     - Expected Output Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/f5c452794e258e83e4ad
     - HTTP Access Protocol: https://dtr-test.pidconsortium.net/#objects/21.T11148/a1fe3f60497302ae8b04
-    - ORCiD Contact: https://dtr-test.pidconsortium.net/#objects/21.T11148/df4aab1aaf6c1cd41a70
-    - Has Annotation: https://dtr-test.pidconsortium.net/#objects/21.T11148/210acdb71caa2e4c55cc
-    - Document MIME Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
+    - ORCiD Contact(inherits from Contact): https://dtr-test.pidconsortium.net/#objects/21.T11148/df4aab1aaf6c1cd41a70
+    - Has Annotation(inherits from Has Metadata): https://dtr-test.pidconsortium.net/#objects/21.T11148/210acdb71caa2e4c55cc
+    - Document MIME Type(inherits from media-type-IANA-application): https://dtr-test.pidconsortium.net/#objects/21.T11148/77e7da3320d24e21008b
     - Schema Reference: https://dtr-test.pidconsortium.net/#objects/21.T11148/49330041ca5fddf9af92
     - Container MIME-Type: https://dtr-test.pidconsortium.net/#objects/21.T11148/007fb75612859ed30aa0
       
